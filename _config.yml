@@ -1,6 +1,7 @@
 plugins:
- - jekyll-remote-theme 
  - jekyll-relative-links
+ - jekyll-remote-theme
+remote_theme: pages-themes/primer@v0.2.0
 relative_links:
   enabled: true
   collections: true
