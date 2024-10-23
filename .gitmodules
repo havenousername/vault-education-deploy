@@ -1,0 +1,3 @@
+[submodule "obsidian-vault"]
+	path = docs
+	url = git@github.com:havenousername/obsidian-vault.git
