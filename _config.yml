@@ -1,6 +1,16 @@
 plugins:
- - jekyll-relative-links
- - jekyll-remote-theme
+  - jekyll-relative-links
+  - jekyll-remote-theme
+  - jekyll-seo-tag
+  - jekyll-github-metadata
+  - jekyll-paginate
+  - jekyll-commonmark-ghpages
+  - jekyll-gist
+  - jekyll-titles-from-headings
+  - jekyll-coffeescript
+  - jekyll-optional-front-matter
+  - jekyll-readme-index
+  - jekyll-default-layout
 remote_theme: pages-themes/primer@v0.2.0
 slugify_mode: raw
 relative_links:
