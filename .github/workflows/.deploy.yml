@@ -26,8 +26,10 @@ jobs:
           node-version: 22
       - name: Clone Quartz
         run: git clone https://github.com/jackyzha0/quartz.git
-      - name: Initialize quartz 
+      - name: Initialize quartz deps 
         run: cd quartz && npm i
+      - name: Install quartz
+        run: npm install -g .
       - name: Create static content
         run: npx quartz create -s ../docs -l shortest -X new
       - name: Build Quartz
