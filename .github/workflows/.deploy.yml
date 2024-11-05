@@ -23,16 +23,19 @@ jobs:
       - name: Clone Quartz
         run: git clone https://github.com/jackyzha0/quartz.git
       - name: Initialize quartz deps 
-        run: cd quartz && npm i
+        working-directory: quartz
+        run: npm i
       - name: CD list
+        working-directory: quartz
         run: ls .
-      - name: Install quartz
-        run: npm install -g .
       - name: Create static content
+        working-directory: quartz
         run: npx quartz create -s ../docs -l shortest -X new
       - name: Build Quartz
+        working-directory: quartz
         run: npx quartz build
       - name: Upload artifact
+        working-directory: quartz
         uses: actions/upload-pages-artifact@v3
         with:
           path: public
