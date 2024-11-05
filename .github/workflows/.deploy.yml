@@ -27,7 +27,7 @@ jobs:
         run: npm i
       - name: Create static content
         working-directory: quartz
-        run: npx quartz create -s ../docs -l shortest -X new
+        run: npx quartz create -s ../docs -l shortest -X copy
       - name: Build Quartz
         working-directory: quartz
         run: npx quartz build
