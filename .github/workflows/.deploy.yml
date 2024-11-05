@@ -24,14 +24,18 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-      - name: Install Dependencies
-        run: npm ci
+      - name: Clone Quartz
+        run: git clone https://github.com/jackyzha0/quartz.git
+      - name: Initialize quartz 
+        run: cd quartz && npm i
+      - name: Create static content
+        run: npx quartz create -s ../docs -l shortest -X new
       - name: Build Quartz
         run: npx quartz build
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: docs
+          path: public
  
   deploy:
     needs: build
