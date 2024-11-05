@@ -10,10 +10,6 @@ permissions:
   pages: write
   id-token: write
  
-concurrency:
-  group: "pages"
-  cancel-in-progress: false
- 
 jobs:
   build:
     runs-on: ubuntu-22.04
@@ -28,6 +24,8 @@ jobs:
         run: git clone https://github.com/jackyzha0/quartz.git
       - name: Initialize quartz deps 
         run: cd quartz && npm i
+      - name: CD list
+        run: ls .
       - name: Install quartz
         run: npm install -g .
       - name: Create static content
