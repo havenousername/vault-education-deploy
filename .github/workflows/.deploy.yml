@@ -25,19 +25,19 @@ jobs:
       - name: Initialize quartz deps 
         working-directory: quartz
         run: npm i
-      - name: CD list
-        working-directory: quartz
-        run: ls .
       - name: Create static content
         working-directory: quartz
         run: npx quartz create -s ../docs -l shortest -X new
       - name: Build Quartz
         working-directory: quartz
         run: npx quartz build
+      - name: CD list
+        working-directory: quartz/public
+        run: ls .
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: quartz/content
+          path: quartz/public
  
   deploy:
     needs: build
