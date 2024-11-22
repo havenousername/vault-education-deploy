@@ -14,9 +14,20 @@ jobs:
   build:
     runs-on: ubuntu-22.04
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout repository
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # Fetch all history for git info
+          token: ${{ secrets.PAT }}
+          submodules: recursive
+      - name: Authorize Git
+        run: |
+          git config --global user.email "$GITHUB_ACTOR@users.noreply.github.com"
+          git config --global user.name "$GITHUB_ACTOR"
+      - name: Update submodule
+        run: |
+          git submodule update  --init --recursive --remote -f
+        env:
+          GITHUB_TOKEN: ${{ secrets.PAT }}
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -25,19 +36,19 @@ jobs:
       - name: Initialize quartz deps 
         working-directory: quartz
         run: npm i
-      - name: CD list
-        working-directory: quartz
-        run: ls .
       - name: Create static content
         working-directory: quartz
-        run: npx quartz create -s ../docs -l shortest -X new
+        run: npx quartz create -s ../docs -l shortest -X copy
       - name: Build Quartz
         working-directory: quartz
         run: npx quartz build
+      - name: CD list
+        working-directory: quartz/public
+        run: ls .
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: quartz/content
+          path: quartz/public
  
   deploy:
     needs: build
